@@ -19,7 +19,10 @@ def parse_float(s: str):
 
 def main():
     st.set_page_config(
-        page_title="Cálculo de pruebas de lab", page_icon="🧪", layout="wide"
+        page_title="Cálculo de pruebas de lab",
+        page_icon="🧪",
+        layout="centered",
+        initial_sidebar_state="collapsed",
     )
     st.title("Cálculo de pruebas de lab")
 
