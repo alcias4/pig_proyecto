@@ -198,13 +198,13 @@ def cal_cielba(df, grado, x_nuevo):
         "db": round(base["DB"], 3),
     }
     fila_mas = {
-        "con": "mas 8% ajuste de error hacia abajo",
+        "con": "8% ajuste de error hacia arriba",
         "dl": round(base["DL"] + valor * abs(base["DL"]), 3),
         "da": round(base["DA"] + valor * abs(base["DA"]), 3),
         "db": round(base["DB"] + valor * abs(base["DB"]), 3),
     }
     fila_menos = {
-        "con": "ajuste de error hacia arriba",
+        "con": "8% ajuste de error hacia abajo",
         "dl": round(base["DL"] - valor * abs(base["DL"]), 3),
         "da": round(base["DA"] - valor * abs(base["DA"]), 3),
         "db": round(base["DB"] - valor * abs(base["DB"]), 3),
