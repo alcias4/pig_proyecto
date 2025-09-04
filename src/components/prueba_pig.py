@@ -153,26 +153,29 @@ def prueba_pig(id: str, titulo: str):
             )
     # ---- Botones de acción ----
 
-    click_cal = st.button(
-        "Calcular", key=f"{base}-btn-cal", width="stretch", type="primary"
-    )
+    if len(df["Concentración"]) > 1:
+        click_cal = st.button(
+            "Calcular", key=f"{base}-btn-cal", width="stretch", type="primary"
+        )
 
-    x_nuevo = st.number_input(
-        "Concentración a predecir", min_value=0.0, step=0.1, key=f"{base}-preidc-n"
-    )
+        x_nuevo = st.number_input(
+            "Concentración a predecir", min_value=0.0, step=0.1, key=f"{base}-preidc-n"
+        )
 
-    if click_cal:
-        if grado_x != 0:
-            predicciones = cal_cielba(df, grado_x, x_nuevo)
+        if click_cal:
+            if grado_x != 0:
+                predicciones = cal_cielba(df, grado_x, x_nuevo)
 
-            # # 🔹 Mostrar como texto
-            st.write(f"### Predicciones para concentración {x_nuevo}")
-            # st.write(predicciones)
+                # # 🔹 Mostrar como texto
+                st.write(f"### Predicciones para concentración {x_nuevo}")
+                # st.write(predicciones)
 
-            # 🔹 O más bonito como tabla
-            st.dataframe(
-                pd.DataFrame(predicciones), key=f"{base}-resul", hide_index=True
-            )
+                # 🔹 O más bonito como tabla
+                st.dataframe(
+                    pd.DataFrame(predicciones), key=f"{base}-resul", hide_index=True
+                )
+    else:
+        st.info("Agregar con mínimo dos puntos")
 
 
 def cal_cielba(df, grado, x_nuevo):
