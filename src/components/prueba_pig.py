@@ -7,7 +7,7 @@ import numpy as np
 
 
 def prueba_pig(id: str, titulo: str):
-    st.header(titulo)
+    st.header(f"Prueba: {titulo}")
     base = f"pig-{id}"
 
     # ---- Estado persistente ----
@@ -21,7 +21,7 @@ def prueba_pig(id: str, titulo: str):
             }
         }
 
-    st.markdown("##### Agregar puntos para predción")
+    # st.markdown("##### Agregar puntos para predción")
     with st.form(key=f"{base}-form", clear_on_submit=False):
         con, dl, da, db = st.columns(4)
         with con:
@@ -175,7 +175,7 @@ def prueba_pig(id: str, titulo: str):
                     pd.DataFrame(predicciones), key=f"{base}-resul", hide_index=True
                 )
     else:
-        st.info("Agregar con mínimo dos puntos")
+        st.info("Agregar como mínimo dos puntos")
 
 
 def cal_cielba(df, grado, x_nuevo):
