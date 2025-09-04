@@ -192,25 +192,26 @@ def cal_cielba(df, grado, x_nuevo):
     base = {v: float(modelos[v](x_nuevo)) for v in ["DL", "DA", "DB"]}
     conc_txt = f"x={x_nuevo:g}"
 
-    valor = 0.08
+    valor = 0.10
+    redonde = 2
     # Filas (redondeo a 3 decimales). ±8% relativo sobre |valor|
     fila_pred = {
         "con": conc_txt,
-        "dl": round(base["DL"], 3),
-        "da": round(base["DA"], 3),
-        "db": round(base["DB"], 3),
+        "dl": round(base["DL"], redonde),
+        "da": round(base["DA"], redonde),
+        "db": round(base["DB"], redonde),
     }
     fila_mas = {
-        "con": "8% ajuste de error hacia arriba",
-        "dl": round(base["DL"] + valor * abs(base["DL"]), 3),
-        "da": round(base["DA"] + valor * abs(base["DA"]), 3),
-        "db": round(base["DB"] + valor * abs(base["DB"]), 3),
+        "con": f"{valor * 100}% ajuste de error hacia arriba",
+        "dl": round(base["DL"] + valor * abs(base["DL"]), redonde),
+        "da": round(base["DA"] + valor * abs(base["DA"]), redonde),
+        "db": round(base["DB"] + valor * abs(base["DB"]), redonde),
     }
     fila_menos = {
-        "con": "8% ajuste de error hacia abajo",
-        "dl": round(base["DL"] - valor * abs(base["DL"]), 3),
-        "da": round(base["DA"] - valor * abs(base["DA"]), 3),
-        "db": round(base["DB"] - valor * abs(base["DB"]), 3),
+        "con": f"{valor * 100}% ajuste de error hacia abajo",
+        "dl": round(base["DL"] - valor * abs(base["DL"]), redonde),
+        "da": round(base["DA"] - valor * abs(base["DA"]), redonde),
+        "db": round(base["DB"] - valor * abs(base["DB"]), redonde),
     }
 
     # DataFrame exactamente con columnas con, dl, da, db
